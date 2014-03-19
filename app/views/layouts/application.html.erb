@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RailsBlog</title>
+  <link rel="stylesheet" type="text/css" href="/css/mystyle.css">
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div id="partial-overlay">
+		<h1 id="title">My Blog</h1>
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="#">Categories</a>
+					<ul>
+						<% Category.all.each do |cat| %>
+						<li><a href="/blogroll/<%= cat.name %>"><%= cat.name %></a></li>
+						<% end %>
+					</ul>
+				</li>
+				<li><a href="/poll/">Polls</a></li>
+				<% Page.all.each do |page| %>
+        <% clean_title = underscore(page.title) %>
+				<li><a href="/page/<%= clean_title %>"><%= page.title %></a></li>
+				<% end %>
+				<li><a href="/contact_us">Contact Us</a></li>
+			</ul>
+		</nav>
+		<%= yield %>
+	
+		<div id="footer">
+			<p>
+				<a href="/user">Add User</a> | <a href="/page/create">Add Page</a> | <a href="/post/create">Add Post</a> | <a href="/category">Add Category</a> | <a href="/poll/create">Add Poll</a>
+			</p>
+		</div>
+	</div>
+</body>
+</html>

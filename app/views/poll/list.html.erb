@@ -1,0 +1,13 @@
+<h1>Active Polls</h1>
+<% @polls.each do |poll| %>
+	<% if poll.active %>
+		<p><strong><a href="/poll/<%= poll.id %>"><%= poll.question %></a></strong> asked by <%= poll.user.username %></p>
+	<% end %>
+<% end %>
+
+<h3>Previous Polls</h3>
+<% @polls.each do |poll| %>
+	<% if !poll.active %>
+		<p><strong><a href="/poll/<%= poll.id %>"><%= poll.question %></a></strong> asked by <%= poll.user.username %></p>
+	<% end %>
+<% end %>

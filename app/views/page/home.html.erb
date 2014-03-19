@@ -1,0 +1,25 @@
+<p>Here is my blog. It really doesn't talk about much, but that is kinda the point.</p>
+
+<h3>Latest Posts</h3>
+<% @posts.each do |post|%>
+	<div id="post"><p>
+		<a href="/post/<%= post.id %>"><h3><%= post.title %></h3></a>
+		Author: <a href="/user/<%= post.user_id %>">
+			<%= post.user.full_name %></a><br />
+		Posted at: <%= post.created_at %><br />
+		<% if post.content.split.size > 20 %>
+			<%= post.content.split[0..20].join(' ') %>... <a href="/post/<%= post.id %>">Read More</a>
+		<% else %>
+			<%= post.content %>
+		<% end %>
+	</p></div>
+<% end %>
+
+<p>
+	<% if @page != 0 %>
+		<a href="/?page=<%= @page - 1 %>">Previous Page</a>
+	<% end %>
+	<% if Post.all.length > ((@page + 1) * 5) %>
+		<a href="/?page=<%= @page + 1 %>">Next Page</a>
+	<% end %>
+</p>
