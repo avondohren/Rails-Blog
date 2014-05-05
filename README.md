@@ -1,4 +1,7 @@
-Rails-Blog
-==========
+#Custom Blog
 
-Implementation of a Blog, using Rails for the first time.
+First ever Rails application.
+
+Completely build from scratch.
+
+Implementation of a Blog. Allows the user to create articles and assign categories.
